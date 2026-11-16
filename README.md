@@ -1,18 +1,15 @@
-# KO Market Radar V4.3 Learning Journal
+# KO Market Radar V4.3.3
 
-## GitHub-Dateien
-- intraday_ko_scanner_v4_3.py
-- scanner_engine.py
-- market_universe.py
-- trade_journal.py
-- ko_profile.py
-- requirements.txt
-- runtime.txt
+Main file: `intraday_ko_scanner_v4_3_3.py`
 
-Streamlit Main file: `intraday_ko_scanner_v4_3.py`
+## Funktionen
+- robuste Farbsignale durch direkt eingebettete Emoji-Symbole
+- 60m/15m/5m/3m Radar
+- Trade-Snapshot beim Einstieg
+- offene und realisierte Gesamtbilanz
+- P/L EUR und Prozent
+- MFE, MAE, R-Multiple und Signalgruppen
+- SQLite-Backup und CSV-Export
 
-## Lernlogik
-Beim Einstieg wird der komplette Radar-Snapshot gespeichert. Während des Trades werden höchster/niedrigster Zertifikatkurs gepflegt. Beim Exit berechnet das Journal P/L, R-Multiple, MFE und MAE. Gruppenstatistiken vergleichen EARLY/CONFIRMED, Grade und LONG/SHORT.
-
-## Wichtiger Speicherhinweis
-SQLite im Streamlit-Container ist nicht garantiert persistent. Nach jedem Handelstag das SQLite-Backup herunterladen. Später kann dieselbe Struktur auf Supabase/PostgreSQL migriert werden.
+## Installation
+Alle Dateien direkt in den GitHub-Root hochladen und in Streamlit Community Cloud `intraday_ko_scanner_v4_3_3.py` als Main file wählen.
