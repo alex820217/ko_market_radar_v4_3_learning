@@ -20,6 +20,15 @@ def update_trade(tid,current_price,new_stop=None):
     if not r:c.close();return
     cp=float(current_price);hi=max(r["highest_price"] or cp,cp);lo=min(r["lowest_price"] or cp,cp);stop=float(new_stop) if new_stop is not None else r["certificate_stop"]
     c.execute("UPDATE trades SET highest_price=?,lowest_price=?,certificate_stop=?,last_price=? WHERE id=?",(hi,lo,stop,cp,tid));c.commit();c.close()
+def delete_trade(tid):
+    """Dauerhaft genau einen Trade aus dem Journal löschen."""
+    c=_db()
+    cur=c.execute("DELETE FROM trades WHERE id=?",(tid,))
+    c.commit()
+    count=cur.rowcount
+    c.close()
+    return count
+
 def close_trade(tid,exit_price,reason):
     c=_db();ep=float(exit_price);c.execute("UPDATE trades SET status='CLOSED',certificate_exit=?,exit_reason=?,exit_time=?,last_price=? WHERE id=?",(ep,reason,datetime.now(timezone.utc).isoformat(timespec="seconds"),ep,tid));c.commit();c.close()
 def load(status=None):
